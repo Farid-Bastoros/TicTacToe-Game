@@ -23,9 +23,20 @@ public class TicTacToeFrame extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
+        JPanel welcomePanel = createWelcomePanel();
+        JPanel gamePanel = createGamePanel();
+        
+        mainPanel.add(welcomePanel, "WelcomePanel");
+        mainPanel.add(gamePanel, "GamePanel");
+
+        add(mainPanel);
+
+        cardLayout.show(mainPanel, "WelcomePanel");
+    }
+
+    private JPanel createWelcomePanel() {
         JPanel welcomePanel = new JPanel();
         welcomePanel.setLayout(new BorderLayout());
-
         welcomePanel.setBackground(new Color(135, 206, 235));
 
         JLabel welcomeLabel = new JLabel("Welcome to Tic Tac Toe", SwingConstants.CENTER);
@@ -37,7 +48,6 @@ public class TicTacToeFrame extends JFrame {
         startButton.setBackground(new Color(150, 205, 50));
         startButton.setForeground(new Color(0, 0, 0));
         startButton.setFocusPainted(false);
-
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,10 +58,14 @@ public class TicTacToeFrame extends JFrame {
         welcomePanel.add(welcomeLabel, BorderLayout.CENTER);
         welcomePanel.add(startButton, BorderLayout.SOUTH);
 
+        return welcomePanel;
+    }
+
+    private JPanel createGamePanel() {
         JPanel gamePanel = new JPanel(new BorderLayout());
 
-        buttons = new JButton[3][3];
         JPanel boardPanel = new JPanel(new GridLayout(3, 3));
+        buttons = new JButton[3][3];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j] = new JButton("");
@@ -68,13 +82,6 @@ public class TicTacToeFrame extends JFrame {
         gamePanel.add(boardPanel, BorderLayout.CENTER);
         gamePanel.add(statusLabel, BorderLayout.SOUTH);
 
-        mainPanel.add(welcomePanel, "WelcomePanel");
-        mainPanel.add(gamePanel, "GamePanel");
-
-        playerXTurn = true;
-
-        add(mainPanel);
-
-        cardLayout.show(mainPanel, "WelcomePanel");
+        return gamePanel;
     }
 }
