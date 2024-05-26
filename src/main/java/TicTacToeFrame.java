@@ -3,9 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TicTacToe extends JFrame {
+public class TicTacToeFrame extends JFrame {
 
-    public TicTacToe() {
+    public TicTacToeFrame() {
         initializeUI();
     }
 
@@ -40,13 +40,5 @@ public class TicTacToe extends JFrame {
         welcomePanel.add(startButton, BorderLayout.SOUTH);
 
         add(welcomePanel);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new TicTacToe().setVisible(true);
-            }
-        });
     }
 }
